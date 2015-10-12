@@ -36,22 +36,33 @@ if (email.match(regExpEmail) != null)
    Поиск ведется по всем полям.
 */
 module.exports.find = function find(query) {
-	console.log('Po zaprosy '+ query + ' naydeno:')
+	var count = 0;
 	for (var i = 0; i < phoneBook.length; i++)
 	{
 		if (phoneBook[i]['name'].indexOf(query) != -1)
 		{
 			console.log(phoneBook[i]['name'] + ', ' + phoneBook[i]['phone'] + ', ' + phoneBook[i]['email']);
+			count++;
 		}
 		else if (phoneBook[i]['phone'].indexOf(query) != -1)
 		{
 			console.log(phoneBook[i]['name'] + ', ' + phoneBook[i]['phone'] + ', ' + phoneBook[i]['email']);
+			count++;
 		}
 		else if (phoneBook[i]['email'].indexOf(query) != -1)
 		{
 			console.log(phoneBook[i]['name'] + ', ' + phoneBook[i]['phone'] + ', ' + phoneBook[i]['email']);
+			count++;
 		}
 	}
+	if (query == null)
+		{
+			console.log(phoneBook);
+		}
+		else
+		{
+			console.log('Po zaprosy '+ query + ' naydeno ' + count + ' resyltatov')
+		}
     // Ваша удивительная магия здесь
 
 };
