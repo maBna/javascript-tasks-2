@@ -1,6 +1,6 @@
 'use strict';
 
-var phoneBook; // Здесь вы храните записи как хотите
+var phoneBook = new Array(); // Здесь вы храните записи как хотите
 
 /*
    Функция добавления записи в телефонную книгу.
@@ -8,8 +8,27 @@ var phoneBook; // Здесь вы храните записи как хотит�
 */
 module.exports.add = function add(name, phone, email) {
 
-    // Ваша невероятная магия здесь
+var regExpName = /\w*.*\w*.*\w*/;
+var regExpTelephone = /.\d*.*\d\d\d.*\d*.\d.\d*/;
+var regExpEmail = /\w*@\w*.\w*/;
 
+
+if (name.match(regExpName) != null)
+{ 
+if (phone.match(regExpTelephone) != null)
+{
+if (email.match(regExpEmail) != null)
+{
+	var subscriber = {
+	name: name,
+	phone: phone,
+	email: email
+	}
+	phoneBook.push(subscriber);
+}
+}
+}
+    // Ваша невероятная магия здесь
 };
 
 /*
@@ -17,7 +36,22 @@ module.exports.add = function add(name, phone, email) {
    Поиск ведется по всем полям.
 */
 module.exports.find = function find(query) {
-
+	console.log('Po zaprosy '+ query + ' naydeno:')
+	for (var i = 0; i < phoneBook.length; i++)
+	{
+		if (phoneBook[i]['name'].indexOf(query) != -1)
+		{
+			console.log(phoneBook[i]['name'] + ', ' + phoneBook[i]['phone'] + ', ' + phoneBook[i]['email']);
+		}
+		else if (phoneBook[i]['phone'].indexOf(query) != -1)
+		{
+			console.log(phoneBook[i]['name'] + ', ' + phoneBook[i]['phone'] + ', ' + phoneBook[i]['email']);
+		}
+		else if (phoneBook[i]['email'].indexOf(query) != -1)
+		{
+			console.log(phoneBook[i]['name'] + ', ' + phoneBook[i]['phone'] + ', ' + phoneBook[i]['email']);
+		}
+	}
     // Ваша удивительная магия здесь
 
 };
@@ -26,27 +60,35 @@ module.exports.find = function find(query) {
    Функция удаления записи в телефонной книге.
 */
 module.exports.remove = function remove(query) {
-
+	var count = 0;
+	var i = 0;
     // Ваша необьяснимая магия здесь
-
+	while (i < phoneBook.length)
+	{
+		if (phoneBook[i]['name'].indexOf(query) != -1)
+		{
+			phoneBook.splice(i,1);
+			count++;
+		}
+		else if (phoneBook[i]['phone'].indexOf(query) != -1)
+		{
+			phoneBook.splice(i,1);
+			count++;
+		}
+		else if (phoneBook[i]['email'].indexOf(query) != -1)
+		{
+			phoneBook.splice(i,1);
+			count++;
+		}
+		else
+		{
+			i++;
+		}
+	}
+	console.log('Ydaleno ' + count + ' kontakt(ov)')
 };
 
-/*
-   Функция импорта записей из файла (задача со звёздочкой!).
-*/
-module.exports.importFromCsv = function importFromCsv(filename) {
-    var data = require('fs').readFileSync(filename, 'utf-8');
-
-    // Ваша чёрная магия:
-    // - Разбираете записи из `data`
-    // - Добавляете каждую запись в книгу
-};
-
-/*
-   Функция вывода всех телефонов в виде ASCII (задача со звёздочкой!).
-*/
-module.exports.showTable = function showTable() {
-
-    // Ваша чёрная магия здесь
-
+module.exports.present = function present() {
+	console.log(phoneBook);
+    // Ваша невероятная магия здесь
 };
