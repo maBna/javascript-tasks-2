@@ -10,14 +10,10 @@ module.exports.add = function add(name, phone, email) {
 
 var regExpName = /\w*.*\w*.*\w*/;
 var regExpTelephone = /.\d*.*\d\d\d.*\d*.\d.\d*/;
-var regExpEmail = /\w*@\w*.\w*/;
+var regExpEmail = /\w*@\w*\.\w*/;
 
 
-if (name.match(regExpName) != null)
-{ 
-if (phone.match(regExpTelephone) != null)
-{
-if (email.match(regExpEmail) != null)
+if ((name.match(regExpName) != null) && (phone.match(regExpTelephone) != null) && (email.match(regExpEmail) != null))
 {
 	var subscriber = {
 	name: name,
@@ -25,8 +21,6 @@ if (email.match(regExpEmail) != null)
 	email: email
 	}
 	phoneBook.push(subscriber);
-}
-}
 }
     // Ваша невероятная магия здесь
 };
@@ -55,7 +49,7 @@ module.exports.find = function find(query) {
 			count++;
 		}
 	}
-	if (query == null)
+	if (!query)
 		{
 			console.log(phoneBook);
 		}
