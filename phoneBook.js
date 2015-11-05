@@ -8,12 +8,11 @@ var phoneBook = new Array(); // Здесь вы храните записи ка
 */
 module.exports.add = function add(name, phone, email) {
 
-var regExpName = /\w*.*\w*.*\w*/;
-var regExpTelephone = /.\d*.*\d\d\d.*\d*.\d.\d*/;
-var regExpEmail = /\w*@\w*\.\w*/;
+var regExpTelephone= /^(\+?\d?\d?)?\s?((\(\d\d\d\))|(\d\d\d))\s?\d\d\d\s?\-?\d\s?\-?\d\d\d$/g;
+var regExpEmail = /^[A-zА-я0-9]*@[A-zА-я0-9]*\.[A-zА-я0-9][A-zА-я0-9][A-zА-я0-9]*\.?[A-zА-я0-9]?[A-zА-я0-9]?([A-zА-я0-9]*)?$/g;
 
 
-if ((name.match(regExpName) != null) && (phone.match(regExpTelephone) != null) && (email.match(regExpEmail) != null))
+if (regExpTelephone.test(phone) && regExpEmail.test(email))
 {
 	var subscriber = {
 	name: name,
