@@ -30,24 +30,6 @@ if (regExpTelephone.test(phone) && regExpEmail.test(email))
 */
 module.exports.find = function find(query) {
 	var count = 0;
-	for (var i = 0; i < phoneBook.length; i++)
-	{
-		if (phoneBook[i]['name'].indexOf(query) != -1)
-		{
-			console.log(phoneBook[i]['name'] + ', ' + phoneBook[i]['phone'] + ', ' + phoneBook[i]['email']);
-			count++;
-		}
-		else if (phoneBook[i]['phone'].indexOf(query) != -1)
-		{
-			console.log(phoneBook[i]['name'] + ', ' + phoneBook[i]['phone'] + ', ' + phoneBook[i]['email']);
-			count++;
-		}
-		else if (phoneBook[i]['email'].indexOf(query) != -1)
-		{
-			console.log(phoneBook[i]['name'] + ', ' + phoneBook[i]['phone'] + ', ' + phoneBook[i]['email']);
-			count++;
-		}
-	}
 	if (!query)
 		{
 			for (var i = 0; i < phoneBook.length; i++)
@@ -57,8 +39,27 @@ module.exports.find = function find(query) {
 		}
 		else
 		{
-			console.log('По запросу '+ query + ' найдено ' + count + ' результат(ов)')
+			console.log('По запросу '+ query + ' найдено ' + count + ' результат(ов)');
+			for (var i = 0; i < phoneBook.length; i++)
+				{
+					if (phoneBook[i]['name'].indexOf(query) != -1)
+					{
+						console.log(phoneBook[i]['name'] + ', ' + phoneBook[i]['phone'] + ', ' + phoneBook[i]['email']);
+						count++;
+					}
+					else if (phoneBook[i]['phone'].indexOf(query) != -1)
+					{
+						console.log(phoneBook[i]['name'] + ', ' + phoneBook[i]['phone'] + ', ' + phoneBook[i]['email']);
+						count++;
+					}
+					else if (phoneBook[i]['email'].indexOf(query) != -1)
+					{
+						console.log(phoneBook[i]['name'] + ', ' + phoneBook[i]['phone'] + ', ' + phoneBook[i]['email']);
+						count++;
+					}
+				}
 		}
+};
     // Ваша удивительная магия здесь
 
 };
