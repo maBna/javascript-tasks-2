@@ -1,6 +1,6 @@
 'use strict';
 
-var phoneBook = new Array(); // Здесь вы храните записи как хотите
+var phoneBook = []; // Здесь вы храните записи как хотите
 
 /*
    Функция добавления записи в телефонную книгу.
@@ -50,11 +50,14 @@ module.exports.find = function find(query) {
 	}
 	if (!query)
 		{
-			console.log(phoneBook);
+			for (var i = 0; i < phoneBook.length; i++)
+				{
+					console.log(phoneBook[i]['name'] + ', ' + phoneBook[i]['phone'] + ', ' + phoneBook[i]['email']);
+				}
 		}
 		else
 		{
-			console.log('Po zaprosy '+ query + ' naydeno ' + count + ' resyltatov')
+			console.log('По запросу '+ query + ' найдено ' + count + ' результат(ов)')
 		}
     // Ваша удивительная магия здесь
 
